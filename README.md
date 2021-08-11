@@ -10,6 +10,8 @@ An easy way of turning your picture files into a only pdf without uploading any 
 In the same direcotry the executable is, there must be a folder called Pdf_Drawer (already provided) where files must be placed. 
 
 After executing the program the output.pdf will appear in the same place as the exe.  
+
+Some AI images are provided as an example in the folder, including also the pdf. 
 ### Python
 Dependencies:
 ```shell
