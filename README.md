@@ -1,4 +1,9 @@
 # image-to-pdf
+
+<p align="center">
+  <img src="/icons/icon.png" />
+</p>
+
 ## Purpose 
 An easy way of turning your picture files into a only pdf without uploading any sensitive information to web pages
 ## Usage 
