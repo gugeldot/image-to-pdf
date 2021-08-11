@@ -1,0 +1,2 @@
+pikepdf==2.12.2
+Pillow==8.2.0
