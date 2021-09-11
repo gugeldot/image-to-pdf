@@ -8,10 +8,12 @@
 An easy way of turning your picture files into a only pdf without uploading any sensitive information to web pages
 ## Usage 
 In the same direcotry the executable is, there must be a folder called Pdf_Drawer (already provided) where files must be placed. 
+The script will firstly check if there's any image files in the folder (png,jpg,jpeg), if none it'll check for pdf in that same folder to merge them. 
+If any of them are in it, it will just do nothing.
 
-After executing the program the output.pdf will appear in the same place as the exe.  
+After executing the program the output.pdf will appear in the same place as the exe/python script.  
 
-Some AI images are provided as an example in the folder, including also the pdf. 
+Some AI images are provided as an example in the folder, including also a pdf to check. 
 ### Python
 Dependencies:
 ```shell
