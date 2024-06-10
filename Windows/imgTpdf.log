@@ -1,0 +1,5 @@
+[11/06/2024-01:19:05] SESSION STARTED---------------
+[11/06/2024-01:19:05] current_extensions: File formats extracted from Pdf_Drawer: [png pdf]
+[11/06/2024-01:19:05] check_empty: Empty? [jpg png jpeg] : False
+[11/06/2024-01:19:05] mode_selector: NOTICE: BOTH PROPOUSES DETECTED, CONVERTISION PRIORITIZED
+[11/06/2024-01:19:05] SESSION ENDED---------------
