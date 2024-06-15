@@ -14,7 +14,12 @@ In this tool you would be capable of selecting with total freedom the folder in 
 Once selected the folder where the files are the program will automatically detect valid files and enable merging and conversion capabilities respectively.
 
 It'll also regenarate config & log files (last one can be turned off)
-Vintage GUI look but simple, efficient and full of feedback.
+
+Vintage GUI look but simple, efficient and full of feedback. 
+
+Never move the exe out of the folder "ImgToPdfV7_GUI_Build", you can rename it and create a shortcut to the program but keep it inside. 
+
+Thanks!
 
 ## New GUI Implemented!
 Conversion screen:
