@@ -9,8 +9,11 @@ An easy way of turning your picture files into a only pdf without uploading any 
 
 ## Usage 
 In this tool you would be capable of selecting with total freedom the folder in which your image files are, the order in which they'll appear and the name of the output pdf file within a lot more settings.
+
+
 Once selected the folder where the files are the program will automatically detect valid files and enable merging and conversion capabilities respectively.
 
+It'll also regenarate config & log files (last one can be turned off)
 Vintage GUI look but simple, efficient and full of feedback.
 
 ## New GUI Implemented!
