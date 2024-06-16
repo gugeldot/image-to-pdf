@@ -41,5 +41,5 @@ Windows executables are provided for convenience, you can make them yourself by 
 pip install pyinstaller
 ```
 ```shell
-pyinstaller --onefile ImgToPdf_V4.py
+pyinstaller --onefile ImgToPdfGUI.py
 ```
