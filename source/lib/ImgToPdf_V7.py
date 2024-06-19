@@ -1,4 +1,4 @@
-from os import listdir,remove,path,getenv
+from os import listdir,remove,path,getenv,listdir
 import glob 
 from PIL import Image 
 import pikepdf as Pdf
@@ -8,6 +8,7 @@ import json
 Image.MAX_IMAGE_PIXELS = None
 desktop_path = path.join(getenv('USERPROFILE'), 'Desktop')
 extensions = ['jpg','png','jpeg']	
+valid_extensions = ('.png', '.jpg', '.jpeg')
 config_filename = "config.json" 									#Most common extensions, not tested others									
 default_config = {"drawer": desktop_path, "outputFile": "output.pdf", "location": "","log_enabled": True, "log_filename": "imgTpdf.log"}
 
@@ -32,7 +33,7 @@ def config_save(file_path, config):
     log_add(config_save.__name__ + ": Configuration saved",config)
 
 def check_config():
-	if not path.exists(config_filename): 
+	if not path.exists(config_filename) or not path.exists(config_load(config_filename)['drawer']): 
 		config_save(config_filename,default_config)
 		log_add(check_config.__name__ + ": Configuration error, default regeneration",default_config)
 	else: 
@@ -170,10 +171,37 @@ def img_Tpdf(files, config):
         Path(pdf_file).unlink(missing_ok=True)
         
 
+def cleanDir(config):
+	drawer = config['drawer']
+	if not path.exists(drawer) or  not path.isdir(drawer) :
+		log_add(cleanDir.__name__ + f"Directory {drawer} not existent" ,config)
+		return
+	else:
+		for extension in valid_extensions: 
+			for file in listdir(drawer):
+				if file.endswith(extension):
+					file_path = path.join(drawer, file)
+					remove(file_path)
+					log_add(cleanDir.__name__ + f": [-] File deleted: {file_path}" ,config)
+		log_add(cleanDir.__name__ + "Directory clearance done" ,config)
+
+def cleanDirPDF(config):
+	drawer = config['drawer']
+	if not path.exists(drawer) or  not path.isdir(drawer) :
+		log_add(cleanDir.__name__ + f": Directory {drawer} not existent" ,config)
+		return
+	else:
+		extension = '.pdf'
+		for file in listdir(drawer):
+			if file.endswith(extension):
+				file_path = path.join(drawer, file)
+				remove(file_path)
+				log_add(cleanDir.__name__ + f"[-] File deleted: {file_path}" ,config)
+		log_add(cleanDir.__name__ + ": Directory clearance done" ,config)
 
 
 """
-V7 of Image to PDF converter -- By Gugeldot at 11/06/2024 # For Python 3 
+V7.2 of Image to PDF converter -- By Gugeldot at 11/06/2024 # For Python 3 
 OLD: 	Solved the error 'PermissionError: [WinError 32] The process cannot access the file because it is being used by another process' by using 
 		WITH and AS strucutre, being used to close a file after opening and being more readeable (07/06/2021)
 		Reduced the main process to a single for loop 
@@ -182,9 +210,9 @@ OLD: 	Solved the error 'PermissionError: [WinError 32] The process cannot access
 		Added the ability to merge pdf's if there's no images to convert in last place
 		Almost complete refactoring for simplicity and readability
 		Primitive log system
-		
+		Settings outscaled to json 
+		Config regen
+		GUI	
 NEWER:
-	Settings outscaled to json 
-	Config regen
-	GUI 
+	 Delete files in the drawer directory option
 """

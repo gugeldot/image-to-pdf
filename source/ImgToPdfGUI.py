@@ -38,7 +38,7 @@ selected_pdf = None
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 window_width = int(screen_width * 0.2)
-window_height = int(screen_height * 0.4)
+window_height = int(screen_height * 0.45)
 x_position = int((screen_width - window_width) / 2)
 y_position = int((screen_height - window_height) / 2)
 root.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
@@ -397,14 +397,16 @@ def handle_pdf_convert_click():
         if open_pdf_button2 and open_pdf_button2.winfo_exists():
             open_pdf_button2.config(command=lambda: os.startfile(pdf_path.get()))
         else:
-
             open_pdf_button2 = Button(tab2, text="Open PDF", command=lambda: os.startfile(pdf_path.get()))
             open_pdf_button2.pack(pady=5)
+
+        delete_buttonPdf = Button(tab2, text="Delete pdfs?", command=lambda: handle_delete_pdf(config))
+        delete_buttonPdf.pack(pady=5)
+
     else: 
         status_message_pdf.set("Error en la conversión!")
         status_label_pdf.config(fg="red")  # Color rojo para indicar error
 
-# Función para manejar el clic en el botón "Convertir"
 def handle_convert_click():
     global open_pdf_button
 
@@ -417,13 +419,30 @@ def handle_convert_click():
         if open_pdf_button and open_pdf_button.winfo_exists():
             open_pdf_button.config(command=lambda: os.startfile(pdf_path.get()))
         else:
-            print(pdf_path.get())
+            #print(pdf_path.get())
             open_pdf_button = Button(tab1, text="Open PDF", command=lambda: os.startfile(pdf_path.get()))
             open_pdf_button.pack(pady=5)
+        
+        
+        delete_button = Button(tab1, text="Delete files?", command=lambda: handle_delete_files(config))
+        delete_button.pack(pady=5)
     else:
         status_message.set("Something went wrong!")
         status_label.config(fg="red")
 
+
+
+
+def handle_delete_files(config):
+    itp.cleanDir(config)
+    #update_file_list()
+    update_tabs_visibility()
+
+def handle_delete_pdf(config):
+    print("A")
+    itp.cleanDirPDF(config)
+    #update_file_list()
+    update_tabs_visibility()
 
 
 #EXECUTION 
