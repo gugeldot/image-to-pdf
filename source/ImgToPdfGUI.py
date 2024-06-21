@@ -12,7 +12,7 @@ imgPath = "Imgs/"
 root = Tk()
 root.iconbitmap(imgPath+"icon.ico")
 root.title("ImgToPDF")
-root.resizable(False, False)
+#root.resizable(False, False)
 
 # Config autoregen
 itp.check_config()
