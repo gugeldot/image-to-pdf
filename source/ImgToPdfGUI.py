@@ -101,7 +101,7 @@ def save_changes(drawer_path, ofValue, checkbox_state, logFValue):
     config["log_filename"] = save_logFValue
 
     itp.config_save(config_filename, config)
-    
+
     refreshTab(tab3)
     files = [f for f in os.listdir(config['drawer']) if f.lower().endswith(valid_extensions)]
     pdfs = [f for f in os.listdir(config['drawer']) if f.lower().endswith(('.pdf',))]

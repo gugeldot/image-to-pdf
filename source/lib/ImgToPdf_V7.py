@@ -11,16 +11,22 @@ desktop_path = path.join(home_dir, 'Desktop')
 
 extensions = ['jpg','png','jpeg']	
 valid_extensions = ('.png', '.jpg', '.jpeg')
-config_filename = "config.json" 									#Most common extensions, not tested others									
+basePath = path.dirname(__file__)
+config_name = "config.json" 
+config_filename = path.join(basePath, config_name) 		
+
+
+
 default_config = {"drawer": desktop_path, "outputFile": "output.pdf", "location": "","log_enabled": True, "log_filename": "imgTpdf.log"}
 
 
 def log_add(message,config):
 	if config['log_enabled']:
 		timestamp = datetime.now().strftime("%d/%m/%Y-%H:%M:%S")
-		message = f"[{timestamp}] {message}"
-
-		with open(config['log_filename'], 'a') as file:
+		message = f"[{timestamp}] {message}"	
+		log_path = path.join(basePath, config['log_filename']) 
+		
+		with open(log_path, 'a') as file:
 			file.write(message + '\n')
 
 def config_load(file_path):
