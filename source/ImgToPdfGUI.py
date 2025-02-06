@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 from lib import ImgToPdf_V7 as itp
 import json
 import os
+import subprocess
 
 
 # TK initialization
@@ -401,9 +402,9 @@ def handle_pdf_convert_click():
 
         # Crear o actualizar el botón "Abrir PDF"
         if open_pdf_button2 and open_pdf_button2.winfo_exists():
-            open_pdf_button2.config(command=lambda: os.startfile(pdf_path.get()))
+            Button(tab1, text="Open PDF", command=lambda: subprocess.Popen(["xdg-open", pdf_path.get()], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
         else:
-            open_pdf_button2 = Button(tab2, text="Open PDF", command=lambda: os.startfile(pdf_path.get()))
+            Button(tab1, text="Open PDF", command=lambda: subprocess.Popen(["xdg-open", pdf_path.get()], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
             open_pdf_button2.pack(pady=5)
 
         delete_buttonPdf = Button(tab2, text="Delete pdfs?", command=lambda: handle_delete_pdf(config))
@@ -423,11 +424,11 @@ def handle_convert_click():
         pdf_path.set(pdf_path_value)
 
         if open_pdf_button and open_pdf_button.winfo_exists():
-            open_pdf_button.config(command=lambda: os.startfile(pdf_path.get()))
+            open_pdf_button = Button(tab1, text="Open PDF", command=lambda: subprocess.Popen(["xdg-open", pdf_path.get()], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
         else:
             #print(pdf_path.get())
-            open_pdf_button = Button(tab1, text="Open PDF", command=lambda: os.startfile(pdf_path.get()))
-            open_pdf_button.pack(pady=5)
+            open_pdf_button = Button(tab1, text="Open PDF", command=lambda: subprocess.Popen(["xdg-open", pdf_path.get()], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
+        open_pdf_button.pack(pady=5)
         
         
         delete_button = Button(tab1, text="Delete files?", command=lambda: handle_delete_files(config))
