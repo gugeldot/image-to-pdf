@@ -6,11 +6,16 @@ from lib import ImgToPdf_V7 as itp
 import json
 import os
 
-Image.MAX_IMAGE_PIXELS = None
-imgPath = "Imgs/"
+
 # TK initialization
 root = Tk()
-root.iconbitmap(imgPath+"icon.ico")
+
+Image.MAX_IMAGE_PIXELS = None
+imgPath = os.path.join(os.path.dirname(__file__), "Imgs/")
+#root.iconbitmap(os.path.join(imgPath, "icon.ico"))
+
+
+#root.iconbitmap(imgPath+"icon.ico")
 root.title("ImgToPDF")
 #root.resizable(False, False)
 
@@ -96,6 +101,7 @@ def save_changes(drawer_path, ofValue, checkbox_state, logFValue):
     config["log_filename"] = save_logFValue
 
     itp.config_save(config_filename, config)
+    
     refreshTab(tab3)
     files = [f for f in os.listdir(config['drawer']) if f.lower().endswith(valid_extensions)]
     pdfs = [f for f in os.listdir(config['drawer']) if f.lower().endswith(('.pdf',))]

@@ -1,4 +1,4 @@
-from os import listdir,remove,path,getenv,listdir
+from os import listdir,remove,path,getenv,listdir,environ
 import glob 
 from PIL import Image 
 import pikepdf as Pdf
@@ -6,7 +6,9 @@ from datetime import datetime
 import json
 
 Image.MAX_IMAGE_PIXELS = None
-desktop_path = path.join(getenv('USERPROFILE'), 'Desktop')
+home_dir = environ.get("HOME")  # Obtiene la variable de entorno HOME
+desktop_path = path.join(home_dir, 'Desktop')
+
 extensions = ['jpg','png','jpeg']	
 valid_extensions = ('.png', '.jpg', '.jpeg')
 config_filename = "config.json" 									#Most common extensions, not tested others									
@@ -29,7 +31,6 @@ def config_load(file_path):
 def config_save(file_path, config):
     with open(file_path, 'w') as file:
         json.dump(config, file, indent=4)
-
     log_add(config_save.__name__ + ": Configuration saved",config)
 
 def check_config():
